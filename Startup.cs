@@ -16,24 +16,44 @@ namespace BookStore
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            // Enable certain app features (MVC...)
+            services.AddControllersWithViews();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // Check environment
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
+            // Middleware goes here
+            // app.Use(async (context, next) =>
+            // {
+            //     await context.Response.WriteAsync("Some message");
+            //     await next();
+            // });
+
+            // app.Use(async (context, next) =>
+            // {
+            //     await context.Response.WriteAsync("Second message");
+            // });
+
+            // Enables routing
             app.UseRouting();
 
+            // Use to specify the routes
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                // Get request to index
+                // endpoints.MapGet("/", async context =>
+                // {
+                //     await context.Response.WriteAsync(env.EnvironmentName);
+                // });
+
+                // Uses HomeController and Index method by default
+                endpoints.MapDefaultControllerRoute();
             });
         }
     }
