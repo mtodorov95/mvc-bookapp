@@ -18,9 +18,10 @@ namespace BookStore
 
 
         // http://localhost:5000/book/getallbooks
-        public List<BookModel> GetAllBooks()
+        public ViewResult GetAllBooks()
         {
-            return _bookRepo.GetAllBooks();
+            var data = _bookRepo.GetAllBooks();
+            return View();
         }
 
         // Pass params

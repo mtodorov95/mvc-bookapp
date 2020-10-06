@@ -8,9 +8,10 @@ namespace BookStore
 {
     public class HomeController : Controller
     {
-        public string Index()
+        public ViewResult Index()
         {
-            return "Some string";
+            // Returns the view with the same name as the method
+            return View();
         }
     }
 }
