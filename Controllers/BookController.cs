@@ -8,23 +8,32 @@ namespace BookStore
 {
     public class BookController : Controller
     {
-        // http://localhost:5000/book/getallbooks
-        public string GetAllBooks()
+
+        private readonly BookRepository _bookRepo;
+
+        public BookController()
         {
-            return "All books in storage";
+            _bookRepo = new BookRepository();
+        }
+
+
+        // http://localhost:5000/book/getallbooks
+        public List<BookModel> GetAllBooks()
+        {
+            return _bookRepo.GetAllBooks();
         }
 
         // Pass params
         // http://localhost:5000/book/getbook/4
-        public string GetBook(int id)
+        public BookModel GetBook(int id)
         {
-            return $"Book {id}";
+            return _bookRepo.GetBook(id);
         }
 
         // http://localhost:5000/book/searchbooks?bookName=MVCBook&authorName=Author
-        public string SearchBooks(string bookName, string authorName)
+        public List<BookModel> SearchBooks(string bookName, string authorName)
         {
-            return $"A book named {bookName} by {authorName}";
+            return _bookRepo.SearchBooks(bookName, authorName);
         }
     }
 }
