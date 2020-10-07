@@ -26,11 +26,11 @@ namespace BookStore
         private List<BookModel> DataSource()
         {
             return new List<BookModel>(){
-                new BookModel(){id=1, Title="Book1", Author="Author1"},
-                new BookModel(){id=2, Title="Book2", Author="Author2"},
-                new BookModel(){id=3, Title="Book3", Author="Author3"},
-                new BookModel(){id=4, Title="Book4", Author="Author4"},
-                new BookModel(){id=5, Title="Book5", Author="Author5"},
+                new BookModel(){id=1, Title="Book1", Author="Author1", Description="Book description 1"},
+                new BookModel(){id=2, Title="Book2", Author="Author2", Description="Book description 2"},
+                new BookModel(){id=3, Title="Book3", Author="Author3", Description="Book description 3"},
+                new BookModel(){id=4, Title="Book4", Author="Author4", Description="Book description 4"},
+                new BookModel(){id=5, Title="Book5", Author="Author5", Description="Book description 5"},
             };
         }
     }

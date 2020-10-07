@@ -21,7 +21,7 @@ namespace BookStore
         public ViewResult GetAllBooks()
         {
             var data = _bookRepo.GetAllBooks();
-            return View();
+            return View(data);
         }
 
         // Pass params
