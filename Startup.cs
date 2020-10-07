@@ -18,6 +18,7 @@ namespace BookStore
         {
             // Enable certain app features (MVC...)
             services.AddControllersWithViews();
+            services.AddRazorPages().AddRazorRuntimeCompilation();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
