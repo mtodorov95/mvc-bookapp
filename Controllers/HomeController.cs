@@ -13,5 +13,17 @@ namespace BookStore
             // Returns the view with the same name as the method
             return View();
         }
+
+        public ViewResult AboutUs()
+        {
+            // Returns the view with the same name as the method
+            return View();
+        }
+
+        public ViewResult ContactUs()
+        {
+            // Returns the view with the same name as the method
+            return View();
+        }
     }
 }
