@@ -40,6 +40,9 @@ namespace BookStore
             //     await context.Response.WriteAsync("Second message");
             // });
 
+            // Enables static files
+            app.UseStaticFiles();
+
             // Enables routing
             app.UseRouting();
 
