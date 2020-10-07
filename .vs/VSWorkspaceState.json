@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\wwwroot"
   ],
-  "SelectedNode": "\\Startup.cs",
+  "SelectedNode": "\\libman.json",
   "PreviewInSolutionExplorer": false
 }
