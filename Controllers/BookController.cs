@@ -26,9 +26,10 @@ namespace BookStore
 
         // Pass params
         // http://localhost:5000/book/getbook/4
-        public BookModel GetBook(int id)
+        public ViewResult GetBook(int id)
         {
-            return _bookRepo.GetBook(id);
+            var book = _bookRepo.GetBook(id);
+            return View(book);
         }
 
         // http://localhost:5000/book/searchbooks?bookName=MVCBook&authorName=Author
