@@ -10,7 +10,8 @@ namespace BookStore
     {
         public ViewResult Index()
         {
-            // Returns the view with the same name as the method
+            // pass data to the view
+            ViewBag.Title = "Viewbag title";
             return View();
         }
 
