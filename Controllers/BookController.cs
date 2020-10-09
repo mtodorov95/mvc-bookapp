@@ -31,6 +31,17 @@ namespace BookStore
             return View(book);
         }
 
+        public ViewResult AddBook()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ViewResult AddBook(BookModel bookModel)
+        {
+            return View();
+        }
+
         // http://localhost:5000/book/searchbooks?bookName=MVCBook&authorName=Author
         public List<BookModel> SearchBooks(string bookName, string authorName)
         {
