@@ -1,3 +1,4 @@
+using BookStore.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,12 @@ namespace BookStore
 {
     public class BookRepository
     {
+        private readonly BookStoreContext _context = null;
+
+        public BookRepository(BookStoreContext context)
+        {
+            _context = context;
+        }
         public List<BookModel> GetAllBooks()
         {
             return DataSource();
@@ -15,6 +22,23 @@ namespace BookStore
         public BookModel GetBook(int id)
         {
             return DataSource().Find(x => x.id == id);
+        }
+
+        public int AddBook(BookModel model)
+        {
+            var newBook = new Books()
+            {
+                Title = model.Title,
+                Author = model.Author,
+                Pages = model.Pages,
+                CreatedOn = DateTime.UtcNow,
+                Description = model.Description,
+                UpdatedOn=DateTime.UtcNow
+            };
+
+            _context.Books.Add(newBook);
+            _context.SaveChanges();
+            return newBook.id;
         }
 
         public List<BookModel> SearchBooks(string title, string author)

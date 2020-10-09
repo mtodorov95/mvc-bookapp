@@ -23,6 +23,7 @@ namespace BookStore
             services.AddRazorPages().AddRazorRuntimeCompilation();
             // Ref to the DB Context to use
             services.AddDbContext<BookStoreContext>(options => options.UseSqlServer("Server=.;Database=BookStore;Integrated Security=True;"));
+            services.AddScoped<BookRepository, BookRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
