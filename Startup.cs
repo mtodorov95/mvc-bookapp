@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BookStore.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -19,6 +21,8 @@ namespace BookStore
             // Enable certain app features (MVC...)
             services.AddControllersWithViews();
             services.AddRazorPages().AddRazorRuntimeCompilation();
+            // Ref to the DB Context to use
+            services.AddDbContext<BookStoreContext>(options => options.UseSqlServer("Server=.;Database=BookStore;Integrated Security=True;"));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
