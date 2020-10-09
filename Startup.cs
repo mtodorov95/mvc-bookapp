@@ -58,6 +58,13 @@ namespace BookStore
 
                 // Uses HomeController and Index method by default
                 endpoints.MapDefaultControllerRoute();
+
+                // Custom routing
+                // Nesting the app in a bookApp folder
+                //endpoints.MapControllerRoute(
+                //    name: "Default",
+                //    pattern: "bookApp/{controller=Home}/{action=Index}/{id?}"
+                //    );
             });
         }
     }

@@ -8,8 +8,11 @@ namespace BookStore
 {
     public class HomeController : Controller
     {
+        [ViewData]
+        public string Title { get; set; }
         public ViewResult Index()
         {
+            Title = "Home";
             // pass data to the view
             ViewBag.Title = "Viewbag title";
             return View();
@@ -17,12 +20,14 @@ namespace BookStore
 
         public ViewResult AboutUs()
         {
+            Title = "About";
             // Returns the view with the same name as the method
             return View();
         }
 
         public ViewResult ContactUs()
         {
+            Title = "Contacts";
             // Returns the view with the same name as the method
             return View();
         }

@@ -1,10 +1,21 @@
-﻿<!DOCTYPE html>
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@*Use anchor helper tags for easy routing when using custom routes
+    Use environment tag to run code conditionally
+    *@
+
+
+<!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewData["Title"] | Book Store</title>
-    <link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <environment names="Development">
+        <link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+    </environment>
+    <environment names="Production">
+        <link href="~/lib/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    </environment>
     <link href="~/css/style.css" rel="stylesheet" />
 </head>
 <body>
@@ -18,17 +29,27 @@
             </ul>
             <ul class="navbar-nav flex-grow-1">
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="/">Home</a>
+                    <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="/home/aboutus">About</a>
+                    <a class="nav-link text-dark" asp-controller="Home" asp-action="AboutUs">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="/home/contactus">Contacts</a>
+                    <a class="nav-link text-dark" asp-controller="Home" asp-action="ContactUs">Contacts</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="/book/getallbooks">All books</a>
+                    <a class="nav-link text-dark" asp-controller="Book" asp-action="GetAllBooks">All books</a>
                 </li>
+                <environment names="Development">
+                    <li class="nav-item ml-4">
+                        <a class="nav-link text-dark" href="#">Development Env.</a>
+                    </li>
+                </environment>
+                <environment names="Production">
+                    <li class="nav-item ml-4">
+                        <a class="nav-link text-dark" href="#">Production Env.</a>
+                    </li>
+                </environment>
             </ul>
 
         </nav>

@@ -1,4 +1,10 @@
 ﻿@model IEnumerable<BookStore.BookModel>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@*Use asp-route-{paramName} to pass params in anchor tags
+    Use asp-all-route-data to pass sseveral params at once (dictionary...)
+    Use asp-protocol(https), asp-host(google.com) to pass a full url address
+    *@
+
 
 <div class="container">
     <h3 class="display-4">All Books</h3>
@@ -14,7 +20,7 @@
                         </p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <a href="/book/getbook/@book.id" class="btn btn-sm btn-outline-secondary">View Details</a>
+                                <a asp-controller="Book" asp-action="GetBook" asp-route-id="@book.id" class="btn btn-sm btn-outline-secondary">View Details</a>
                             </div>
                             <small class="text-muted">@book.Author</small>
                         </div>

@@ -8,6 +8,8 @@ namespace BookStore
 {
     public class BookController : Controller
     {
+        [ViewData]
+        public string Title { get; set; }
 
         private readonly BookRepository _bookRepo;
 
@@ -16,16 +18,13 @@ namespace BookStore
             _bookRepo = new BookRepository();
         }
 
-
-        // http://localhost:5000/book/getallbooks
         public ViewResult GetAllBooks()
         {
+            Title = "All Books";
             var data = _bookRepo.GetAllBooks();
             return View(data);
         }
 
-        // Pass params
-        // http://localhost:5000/book/getbook/4
         public ViewResult GetBook(int id)
         {
             var book = _bookRepo.GetBook(id);
