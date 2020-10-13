@@ -18,16 +18,16 @@ namespace BookStore
             _bookRepo = bookRepository;
         }
 
-        public ViewResult GetAllBooks()
+        public async Task<ViewResult> GetAllBooks()
         {
             Title = "All Books";
-            var data = _bookRepo.GetAllBooks();
+            var data = await _bookRepo.GetAllBooks();
             return View(data);
         }
 
-        public ViewResult GetBook(int id)
+        public async Task<ViewResult> GetBook(int id)
         {
-            var book = _bookRepo.GetBook(id);
+            var book = await _bookRepo.GetBook(id);
             return View(book);
         }
 
@@ -39,9 +39,9 @@ namespace BookStore
         }
 
         [HttpPost]
-        public IActionResult AddBook(BookModel bookModel)
+        public async Task<IActionResult> AddBook(BookModel bookModel)
         {
-            int id = _bookRepo.AddBook(bookModel);
+            int id = await _bookRepo.AddBook(bookModel);
             if(id > 0)
             {
                 return RedirectToAction("AddBook", new { isSuccessful=true, bookId = id});

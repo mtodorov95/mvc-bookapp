@@ -1,4 +1,5 @@
 using BookStore.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,17 +15,48 @@ namespace BookStore
         {
             _context = context;
         }
-        public List<BookModel> GetAllBooks()
+        public async Task<List<BookModel>> GetAllBooks()
         {
-            return DataSource();
+            var books = new List<BookModel>();
+            var allbooks = await _context.Books.ToListAsync();
+            if (allbooks?.Any() == true)
+            {
+                foreach (var book in allbooks)
+                {
+                    books.Add(new BookModel() { 
+                        Author = book.Author,
+                        Category=book.Category,
+                        Description=book.Description,
+                        id=book.id,
+                        Language=book.Language,
+                        Title=book.Title,
+                        Pages=book.Pages
+                    });
+                }
+            }
+            return books;
         }
 
-        public BookModel GetBook(int id)
+        public async Task<BookModel> GetBook(int id)
         {
-            return DataSource().Find(x => x.id == id);
+            var book = await _context.Books.FindAsync(id);
+            if (book != null)
+            {
+                var bookDetails = new BookModel() {
+                    Author = book.Author,
+                    Category = book.Category,
+                    Description = book.Description,
+                    id = book.id,
+                    Language = book.Language,
+                    Title = book.Title,
+                    Pages = book.Pages
+                };
+                return bookDetails;
+            }
+            return null;
         }
 
-        public int AddBook(BookModel model)
+        public async Task<int> AddBook(BookModel model)
         {
             var newBook = new Books()
             {
@@ -36,8 +68,8 @@ namespace BookStore
                 UpdatedOn=DateTime.UtcNow
             };
 
-            _context.Books.Add(newBook);
-            _context.SaveChanges();
+            await _context.Books.AddAsync(newBook);
+            await _context.SaveChangesAsync();
             return newBook.id;
         }
 
