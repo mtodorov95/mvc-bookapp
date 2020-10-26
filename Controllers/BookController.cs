@@ -52,6 +52,8 @@ namespace BookStore
             ViewBag.isSuccessful = false;
             ViewBag.bookId = 0;
 
+            ModelState.AddModelError("", "Custom error message from controller");
+
             return View();
         }
 
